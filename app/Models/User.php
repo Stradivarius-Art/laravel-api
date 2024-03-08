@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enum\UserRole;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -42,6 +44,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @property UserRole $role
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -52,6 +55,7 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'role'
     ];
 
     protected $hidden = [
@@ -63,6 +67,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'is_admin' => 'bool',
+        'role' => UserRole::class,
     ];
 
     public function products(): HasMany
@@ -73,5 +78,22 @@ class User extends Authenticatable
     public function reviews(): HasMany
     {
         return $this->hasMany(ProductReview::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === UserRole::Admin;
+    }
+    public function isModerator()
+    {
+        return $this->role === UserRole::Moderator;
+    }
+    public function isUser()
+    {
+        return $this->role === UserRole::User;
+    }
+    public function isGuest()
+    {
+        return $this->role === UserRole::Guest;
     }
 }
