@@ -13,20 +13,20 @@
 
 namespace App\Models{
 /**
- * App\Models\Product
+ * 
  *
  * @property int $id
  * @property int|null $user_id
  * @property string|null $name
  * @property string|null $description
  * @property int|null $count
- * @property float|null $price
+ * @property-read float|null $price
  * @property ProductStatus $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $images
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductImage> $images
  * @property-read int|null $images_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Review> $reviews
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductReview> $reviews
  * @property-read int|null $reviews_count
  * @property-read \App\Models\User|null $user
  * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
@@ -49,21 +49,20 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\ProductImage
+ * 
  *
  * @property int $id
  * @property int|null $product_id
  * @property string|null $url
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Product|null $product
+ * @property-read Product|null $product
  * @method static \Database\Factories\ProductImageFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage query()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductImage wherePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductImage whereUrl($value)
@@ -74,38 +73,37 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Review
+ * 
  *
  * @property int $id
  * @property int|null $user_id
  * @property int|null $product_id
  * @property string|null $text
  * @property int|null $rating
+ * @property ReviewStars $stars
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
- * @property-read int|null $products_count
- * @property-read \App\Models\User|null $user
- * @method static \Database\Factories\ReviewFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Review newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Review newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Review query()
- * @method static \Illuminate\Database\Eloquent\Builder|Review whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Review whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Review whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Review whereRating($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Review whereText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Review whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Review whereUserId($value)
- * @property-read \App\Models\Product|null $product
+ * @property-read User|null $user
+ * @method static \Database\Factories\ProductReviewFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview whereStars($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ProductReview whereUserId($value)
  * @mixin \Eloquent
  */
-	class Review extends \Eloquent {}
+	class ProductReview extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\User
+ * 
  *
  * @property int $id
  * @property string $name
@@ -118,9 +116,9 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Product> $products
  * @property-read int|null $products_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Review> $reviews
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, ProductReview> $reviews
  * @property-read int|null $reviews_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Resources\Products\GetProducts;
+use App\Services\Products\ProductService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind('product_service', ProductService::class);
     }
 
     /**
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        GetProducts::withoutWrapping();
     }
 }
