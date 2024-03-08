@@ -1,0 +1,77 @@
+ protected $fillable = [
+        'name',
+        'description',
+        'count',
+        'status',
+        'price'
+    ];
+
+    protected $casts = [
+        'status' => ProductStatus::class
+    ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
+
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function price(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => '$' . $value
+        );
+    }
+
+
+    public function stars()
+    {
+        $rating = $this->rating();
+        return match ($rating) {
+            1 => ReviewStars::OneStar,
+            2 => ReviewStars::TwoStar,
+            3 => ReviewStars::ThreeStar,
+            4 => ReviewStars::FourStar,
+            5 => ReviewStars::FiveStar
+        };
+    }
+
+    public function rating()
+    {
+        dd($this->reviews->id);
+        // return $this->reviews->avg('rating');
+    }
+
+ $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('name')->nullable();
+            $table->tinyText('description')->nullable();
+            $table->integer('count')->nullable();
+            $table->float('price')->nullable();
+            $table->enum('status', ['draft', 'published', 'test']);
+
+  protected $fillable = [
+        'text',
+        'rating',
+        'stars',
+    ];
+
+    protected $casts = [
+        'rating' => 'int',
+        'stars' => ReviewStars::class
+    ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }

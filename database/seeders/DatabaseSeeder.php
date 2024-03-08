@@ -3,7 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use App\Enum\UserRole;
 use Illuminate\Database\Seeder;
+use Database\Seeders\PostSeeder;
+use Database\Seeders\ProductsSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory()->createOne([
+            'email' => 'artemlepeshenko23@gmail.com',
+            'role' => UserRole::Admin,
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call([
+            ProductsSeeder::class,
+            PostSeeder::class
+        ]);
     }
 }
