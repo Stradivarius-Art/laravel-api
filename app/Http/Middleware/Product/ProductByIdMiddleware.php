@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Product;
 
+use App\Exceptions\Product\ProductStatusNotFoundException;
 use App\Models\Product;
 use Closure;
 use App\Enum\ProductStatus;
@@ -15,7 +16,7 @@ class ProductByIdMiddleware
         $productId = $request->route('product');
 
         if ($productId->status === ProductStatus::Draft || $productId->status === ProductStatus::Test) {
-            return response()->json(['message' => 'Product not Found'], 404);
+            throw new ProductStatusNotFoundException();
         }
 
         return $next($request);

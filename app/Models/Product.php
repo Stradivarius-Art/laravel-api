@@ -100,6 +100,6 @@ class Product extends Model
 
     public function rating()
     {
-        return $this->reviews->avg('rating');
+        return rand($this->reviews->avg('rating'), 1);
     }
 }

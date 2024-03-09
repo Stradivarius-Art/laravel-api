@@ -14,5 +14,5 @@ class ProductDTO extends Data
     public int $count;
     public ProductStatus $status;
     #[MapInputName('images.url')]
-    public $url;
+    public string $url;
 }

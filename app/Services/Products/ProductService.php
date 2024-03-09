@@ -7,7 +7,6 @@ use App\Enum\ProductStatus;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
@@ -20,7 +19,7 @@ class ProductService
         return $product;
     }
 
-    public function store(ProductDTO $dto): Product
+    public function store(ProductDTO $dto)
     {
         auth()->login(User::query()->inRandomOrder()->whereIsAdmin(true)->first());
         /** @var Product $product */
@@ -32,10 +31,10 @@ class ProductService
             'status' => $dto->status
         ]);
 
-        $productUrl = $product->images()->create([
+        $product->images()->create([
             'url' => $dto->url
         ]);
 
-        return $product;
+        return response()->json(['message' => 'Успешно'], 201);
     }
 }

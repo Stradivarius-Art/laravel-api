@@ -10,7 +10,7 @@ class Product extends Facade
 {
     /**
      * @method static \App\Models\Product show()
-     * @method \app\Models\Product store(ProductDTO $dto)
+     * @method  store(ProductDTO $dto)
      * @see \App\Services\Products\ProductService
      */
 

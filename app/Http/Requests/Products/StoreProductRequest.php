@@ -19,7 +19,7 @@ class StoreProductRequest extends FormRequest
             'count' => ['required', 'integer'],
             'status' => ['required', 'string', new Enum(ProductStatus::class)],
             'images' => ['required', 'array', 'required_array_keys:url'],
-            'images.url' => ['url'],
+            'images.url' => ['string', 'url'],
         ];
     }
 

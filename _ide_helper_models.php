@@ -136,6 +136,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $role
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRole($value)
  */
 	class User extends \Eloquent {}
 }
