@@ -22,6 +22,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Post query()
+ * @property int $id
+ * @property int|null $category_id
+ * @property int|null $user_id
+ * @property string|null $title
+ * @property string|null $body
+ * @property string|null $thumbnail
+ * @property int|null $views
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereThumbnail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereViews($value)
  * @mixin \Eloquent
  */
 class Post extends Model
@@ -29,6 +48,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
         'title',
         'body',
         'thumbnail',
