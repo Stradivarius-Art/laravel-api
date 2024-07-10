@@ -2,6 +2,7 @@
 
 namespace App\Services\Posts;
 
+use App\Actions\PostAction;
 use App\DTO\PostDTO;
 use App\Models\Post;
 use App\Models\User;
@@ -28,7 +29,7 @@ class PostService
 
     public function store(PostDTO $dto): PostDTO
     {
-        // dd($dto);
+        $action = new PostAction();
         $category = $this->category($dto->name);
         /**
          * @var User $user
@@ -37,7 +38,7 @@ class PostService
         $post = $user->posts()->create([
             'title' => $dto->title,
             'body' => $dto->body,
-            'thumbnail' => $dto->thumbnail,
+            'thumbnail' => $action($dto->thumbnail),
             'status' => $dto->status,
             'category_id' => $category->id
         ]);
