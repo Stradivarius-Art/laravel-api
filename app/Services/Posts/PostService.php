@@ -26,8 +26,9 @@ class PostService
         ]);
     }
 
-    public function store(PostDTO $dto): Model
+    public function store(PostDTO $dto): PostDTO
     {
+        // dd($dto);
         $category = $this->category($dto->name);
         /**
          * @var User $user
@@ -40,7 +41,7 @@ class PostService
             'status' => $dto->status,
             'category_id' => $category->id
         ]);
-        return $post;
+        return PostDTO::from($post);
     }
 
     public function comment(Post $post, string $text): Model

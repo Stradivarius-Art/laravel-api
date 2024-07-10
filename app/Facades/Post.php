@@ -9,7 +9,7 @@ class Post extends Facade
 {
     /**
      * @method static \App\Models\Post index()
-     * @method static  \Illuminate\Database\Eloquent\Model store(PostDTO $dto)
+     * @method static PostDTO store(PostDTO $dto)
      * @method static \Illuminate\Database\Eloquent\Model comment(\App\Models\Post $post, string $text)
      * @see \App\Services\Posts\PostService
      */

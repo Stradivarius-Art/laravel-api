@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DTO\PostDTO;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Facades\Post as FacadesPost;
@@ -22,9 +23,9 @@ class PostsController extends Controller
         return PostById::make($post);
     }
 
-    public function store(StorePostRequest $request)
+    public function store(PostDTO $dto)
     {
-        return FacadesPost::store($request->data());
+        return FacadesPost::store($dto);
     }
 
     public function storeComment(Post $post, Request $request)

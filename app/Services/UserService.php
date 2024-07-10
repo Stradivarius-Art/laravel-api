@@ -9,7 +9,7 @@ use Auth;
 
 class UserService
 {
-    public function create(UserDTO $dto): User
+    public function create(UserDTO $dto): UserDTO
     {
         $user = User::create([
             'name' => $dto->name,
@@ -19,7 +19,7 @@ class UserService
             'role' => UserRole::User
         ]);
 
-        return $user;
+        return UserDTO::from($user);
     }
 
     public function signIn(string $email, string $password): string

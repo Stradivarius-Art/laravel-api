@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
 class User extends Facade
 {
     /**
-     * @method static ModelUser create(UserDTO $dto)
+     * @method static UserDTO create(UserDTO $dto)
      * @method static string signIn(string $email, string $password)
      * @see UserService
      */
