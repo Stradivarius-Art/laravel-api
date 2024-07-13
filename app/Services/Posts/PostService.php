@@ -4,11 +4,14 @@ namespace App\Services\Posts;
 
 use App\Actions\PostAction;
 use App\DTO\PostDTO;
+use App\DTO\UpdatePostDTO;
+use App\Exceptions\UpdatePostException;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 
 class PostService
 {
@@ -57,5 +60,20 @@ class PostService
             'text' => $text,
         ]);
         return $comment;
+    }
+
+    public function update(UpdatePostDTO $dto, Post $post): JsonResponse
+    {
+        $updated = $post->update([
+            'title' => $dto->title,
+            'body' => $dto->body,
+            'status' => $dto->status
+        ]);
+
+        if (!empty($updated)) {
+            return response()->json('Пост был успешно обновлен', 200);
+        }
+
+        throw new UpdatePostException();
     }
 }
