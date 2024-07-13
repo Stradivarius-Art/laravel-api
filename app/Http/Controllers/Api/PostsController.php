@@ -37,4 +37,10 @@ class PostsController extends Controller
     {
         return FacadesPost::update($dto, $post);
     }
+
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return response()->json('Пост был успешно удален');
+    }
 }

@@ -12,4 +12,5 @@ Route::controller(PostsController::class)
         Route::post('', 'store')->name('product.store');
         Route::post('/{post}/comment', 'storeComment')->name('product.store.comment');
         Route::patch('/{post}', 'update')->name('product.update');
+        Route::delete('/{post}', 'delete')->name('product.delete');
     });
