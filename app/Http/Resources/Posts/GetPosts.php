@@ -5,6 +5,9 @@ namespace App\Http\Resources\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin \App\Models\Post
+ */
 class GetPosts extends JsonResource
 {
     public function toArray(Request $request): array
