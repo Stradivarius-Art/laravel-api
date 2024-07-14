@@ -16,6 +16,8 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('posts.access')->only(['update', 'destroy']);
+        $this->middleware('admin')->only(['store', 'update', 'destroy']);
+        $this->middleware('posts.show')->only('show');
     }
 
     public function index()

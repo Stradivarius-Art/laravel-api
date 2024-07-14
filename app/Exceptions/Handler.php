@@ -2,8 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use App\Exceptions\AdminException;
+use App\Exceptions\NoAccessToOperationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -30,6 +32,13 @@ class Handler extends ExceptionHandler
         $this->renderable(function (NoAccessToOperationException $e) {
             return response()->json([
                 'status' => 'failed',
+                'message' => $e->getMessage(),
+            ], 403);
+        });
+
+        $this->renderable(function (AdminException $e) {
+            return response()->json([
+                'status' => 'forbidden',
                 'message' => $e->getMessage(),
             ], 403);
         });
