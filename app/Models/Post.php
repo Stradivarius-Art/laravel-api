@@ -53,7 +53,8 @@ class Post extends Model
         'body',
         'thumbnail',
         'status',
-        'views'
+        'views',
+        'user_id'
     ];
 
     protected $casts = [
@@ -74,5 +75,10 @@ class Post extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function hasAccess()
+    {
+        return $this->user_id === auth()->user();
     }
 }

@@ -1,16 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\PostsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\PostController;
 
-Route::controller(PostsController::class)
-    ->middleware('auth:sanctum')
-    ->prefix('/posts')
-    ->group(function () {
-        Route::get('', 'index')->name('product.index');
-        Route::get('/{post}', 'show')->name('product.show');
-        Route::post('', 'store')->name('product.store');
-        Route::post('/{post}/comment', 'storeComment')->name('product.store.comment');
-        Route::patch('/{post}', 'update')->name('product.update');
-        Route::delete('/{post}', 'delete')->name('product.delete');
-    });
+Route::apiResource('/posts', PostController::class)->middleware('auth:sanctum');
+Route::controller(PostController::class)->group(function () {
+    Route::post('/posts/{post}/comment', 'storeComment')->middleware('auth:sanctum');
+});

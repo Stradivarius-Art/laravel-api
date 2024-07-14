@@ -5,7 +5,6 @@ namespace App\Services\Posts;
 use App\Actions\PostAction;
 use App\DTO\PostDTO;
 use App\DTO\UpdatePostDTO;
-use App\Exceptions\UpdatePostException;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -73,7 +72,5 @@ class PostService
         if (!empty($updated)) {
             return response()->json('Пост был успешно обновлен', 200);
         }
-
-        throw new UpdatePostException();
     }
 }

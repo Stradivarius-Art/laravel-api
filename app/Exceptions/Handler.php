@@ -27,8 +27,11 @@ class Handler extends ExceptionHandler
             //
         });
 
-        $this->renderable(function (UpdatePostException $e) {
-            $e->getMessage();
+        $this->renderable(function (NoAccessToOperationException $e) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => $e->getMessage(),
+            ], 403);
         });
     }
 }
